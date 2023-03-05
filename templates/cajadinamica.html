@@ -1,0 +1,43 @@
+{%extends "layout.html"%}
+
+{%block content%}
+{%from "_macros.html" import render_field%}
+
+<form method="post" class="form-group">
+     <div class="col-md-6">
+          {{render_field(form.numero)}}
+          <button type="submit" class="btn btn-primary mt-3">
+               <i class="icon-ok"></i> Guardar
+          </button>
+     </div>
+</form>
+
+{% if form.numero.data is not none %}
+<!-- {{form.numero.data}} -->
+<form method="post" class="form-group">
+     {% for item in range(form.numero.data | int)  %}
+     {%from "_macros.html" import render_input%}
+     {{render_input('num'+item|string, 'Numero '+(item|int+1)|string, type='number')}}
+     {% endfor %}
+     <button type="submit" class="btn btn-primary mt-3">
+          <i class="icon-ok"></i>Guardar
+     </button>
+</form>
+{% endif %}
+
+{%if numeros != [] %}
+<div class="alert alert-success mt-5">
+     <strong>Success!</strong>
+     <br>
+     <strong>Lista de numeros:</strong> {{numeros}}
+     <br>
+     <strong>Minimo:</strong> {{minimo}}
+     <br>
+     <strong>Maximo:</strong> {{maximo}}
+     <br>
+     <strong>Promedio:</strong> {{promedio}}
+     <br>
+     <strong>Repeticiones:</strong> {{contadores}}
+</div>
+{%endif%}
+{%endblock%}

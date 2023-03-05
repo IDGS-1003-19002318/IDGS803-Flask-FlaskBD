@@ -1,0 +1,18 @@
+{%extends "layout.html" %}
+{%block content%}
+{%from "_macros.html" import render_input %}
+<form  method="post">
+     <div class="control-group">
+          <div class="control">
+               {{render_input('txtMatricula', 'Matricula')}}
+               {{render_input('txtNombre', 'Nombre')}}
+               {{render_input('txtApellido', 'Apellido')}}
+               {{render_input('txtEdad', 'Edad', type='number')}}
+               {{render_input('txtCorreo', 'Correo', type='email')}}
+               <button type="submit" class="btn btn-primary">
+                    <i class="icon-ok"></i> Guardar
+               </button>
+          </div>
+     </div>
+</form>
+{%endblock%}

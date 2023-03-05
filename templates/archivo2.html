@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<h3>Lista de Usuarios</h3>
+
+
+{% for item in list %}
+<h5>{{item}}</h5>
+{% endfor %}
+
+{% endblock %}
