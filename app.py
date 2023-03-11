@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template, flash
 from flask import request
 from flask import url_for
 import forms
@@ -24,6 +24,7 @@ def index():
                        email = create_form.email.data)
         db.session.add(alum)
         db.session.commit()
+        return redirect(url_for('ABCompleto'))
     return render_template('index.html', form = create_form)
 
 @app.route("/ABCompleto", methods=['GET','POST'])
@@ -65,7 +66,7 @@ def eliminar():
     alum1 = db.session.query(Alumnos).filter(Alumnos.id == id).first()
     db.session.delete(alum1)
     db.session.commit()
-    
+    flash("Se ha eliminado el registro con id: {}".format(alum1.id))
     return redirect(url_for('ABCompleto'))
 
 
